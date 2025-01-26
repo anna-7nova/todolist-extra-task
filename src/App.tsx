@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import {Todolist} from './Todolist';
 import { v1 } from 'uuid';
+import { Button } from './components/Buttons';
 
 
 
@@ -21,7 +22,6 @@ export type FilterValuesType = "all" | "active" | "completed";
 
 
 function App() {
-
     const [todo, setTodo] = useState<Array<ObjectType>>([
         {
             title: "What to learn",
@@ -150,6 +150,7 @@ function App() {
     function addTask(title: string, todolistId: number) {
         let newTask: TasksType = {taskId: v1(), title: title, isDone: false};
         setTodo(todo.map((el, index) => index === todolistId ? {...el, tasks: [newTask, ...el.tasks]} : el))
+
     }
 
     function changeStatus(taskId: string, isDone: boolean, todolistId: number) {
@@ -168,7 +169,7 @@ function App() {
     }
 
     const removeAllTodolists = () => {
-    //todo: САМОСТОЯТЕЛЬНО
+        setTodo([])
     }
 
     const removeAllTasksInOneTodo = (todolistId: number) => {
@@ -181,7 +182,7 @@ function App() {
     return (
         <div className="App">
             <div>
-
+                <Button title={"Delete all"} onClick={removeAllTodolists}/>
             </div>
 
             {
@@ -208,7 +209,7 @@ function App() {
                         changeTaskStatus={changeStatus}
                         filter={tl.filter}
                         removeTodolist={removeTodolist}
-
+                        removeAllTasksInOneTodo={removeAllTasksInOneTodo}
                     />
                 })
             }
