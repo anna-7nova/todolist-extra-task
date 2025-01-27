@@ -1,8 +1,10 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './App.css';
-import {Todolist} from './Todolist';
+import { Todolist } from './Todolist';
 import { v1 } from 'uuid';
 import { Button } from './components/Buttons';
+import { Modal } from './components/modal/Modal';
+import { NewButton } from './components/NewButton';
 
 
 
@@ -27,8 +29,8 @@ function App() {
             title: "What to learn",
             filter: "all",
             tasks: [
-                {taskId: v1(), title: "HTML&CSS", isDone: true},
-                {taskId: v1(), title: "JS", isDone: true}
+                { taskId: v1(), title: "HTML&CSS", isDone: true },
+                { taskId: v1(), title: "JS", isDone: true }
             ],
             students: [
                 'Rick Kane',
@@ -87,8 +89,8 @@ function App() {
             title: "What to do",
             filter: "all",
             tasks: [
-                {taskId: v1(), title: "HTML&CSS2", isDone: true},
-                {taskId: v1(), title: "JS2", isDone: true}
+                { taskId: v1(), title: "HTML&CSS2", isDone: true },
+                { taskId: v1(), title: "JS2", isDone: true }
             ],
             students: [
                 'Jago Wormald1',
@@ -148,20 +150,20 @@ function App() {
     }
 
     function addTask(title: string, todolistId: number) {
-        let newTask: TasksType = {taskId: v1(), title: title, isDone: false};
-        setTodo(todo.map((el, index) => index === todolistId ? {...el, tasks: [newTask, ...el.tasks]} : el))
+        let newTask: TasksType = { taskId: v1(), title: title, isDone: false };
+        setTodo(todo.map((el, index) => index === todolistId ? { ...el, tasks: [newTask, ...el.tasks] } : el))
 
     }
 
     function changeStatus(taskId: string, isDone: boolean, todolistId: number) {
         setTodo(todo.map((el, index) => index === todolistId ? {
             ...el,
-            tasks: el.tasks.map(m => m.taskId === taskId ? {...m, isDone: isDone} : m)
+            tasks: el.tasks.map(m => m.taskId === taskId ? { ...m, isDone: isDone } : m)
         } : el))
     }
 
     function changeFilter(value: FilterValuesType, todolistId: number) {
-        setTodo(todo.map((el, index) => index === todolistId ? {...el, filter: value} : el))
+        setTodo(todo.map((el, index) => index === todolistId ? { ...el, filter: value } : el))
     }
 
     function removeTodolist(todolistId: number) {
@@ -174,7 +176,7 @@ function App() {
 
     const removeAllTasksInOneTodo = (todolistId: number) => {
         setTodo(prevState => prevState.map((t, index) => index === todolistId
-            ? {...t, tasks: []}
+            ? { ...t, tasks: [] }
             : t
         ))
     }
@@ -182,7 +184,7 @@ function App() {
     return (
         <div className="App">
             <div>
-                <Button title={"Delete all"} onClick={removeAllTodolists}/>
+                <Button title={"Delete all"} onClick={removeAllTodolists} />
             </div>
 
             {
@@ -213,7 +215,28 @@ function App() {
                     />
                 })
             }
-
+            {/* <Modal>
+                <h2>Confidient information</h2>
+                <input placeholder='email' />
+                <input placeholder='pass' />
+                <input placeholder='pass' />
+                <label> <input type='checkbox' />I agree</label>
+                <button>send</button>
+            </Modal> */}
+            <div>
+                <NewButton onClick={() => { }} color={"red"}>
+                    Red Button
+                </NewButton>
+                <NewButton onClick={() => { }} color={"secondary"}>
+                    Blue Button
+                </NewButton>
+                <NewButton onClick={() => { }}>
+                    Default Button
+                </NewButton>
+                <NewButton onClick={() => { }} disabled>
+                    Disabled Button
+                </NewButton>
+            </div>
         </div>
     );
 }
