@@ -5,6 +5,8 @@ import { v1 } from 'uuid';
 import { Button } from './components/Buttons';
 import { Modal } from './components/modal/Modal';
 import { NewButton } from './components/NewButton';
+import Bankomat from './components/Bankomat';
+
 
 
 
@@ -183,6 +185,8 @@ function App() {
 
     return (
         <div className="App">
+            <div><Bankomat /></div>
+            <div>
             <div>
                 <Button title={"Delete all"} onClick={removeAllTodolists} />
             </div>
@@ -215,6 +219,7 @@ function App() {
                     />
                 })
             }
+            </div>
             {/* <Modal>
                 <h2>Confidient information</h2>
                 <input placeholder='email' />
