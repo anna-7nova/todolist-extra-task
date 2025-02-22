@@ -2,7 +2,6 @@
 .App {
   padding: 30px;
   display: flex;
-  text-align: center;
 }
 
 .App > div {
@@ -24,5 +23,4 @@
 .is-done {
   opacity: 0.5;
 }
-
 
